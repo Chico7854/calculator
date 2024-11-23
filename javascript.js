@@ -58,6 +58,10 @@ function displayNumber(button) {
     display.textContent = display.textContent + button.textContent;
 }
 
+function doOperation() {
+
+}
+
 function clearDisplay() {
     display.textContent = "";
 }
@@ -81,15 +85,11 @@ function updateDisplay(button) {
         clearDisplay();
         return;
     } else if (textContent === "+/-") {
-        
+        changeNumberSign();
+        return;
     }
 
-
-    switch (className) {
-        case "optionButton" {
-            
-        }
-    }
+    buttonClass === "numberButton" ? displayNumber(button) : doOperation(button)
 }
 
 const display = document.querySelector("#display p");
