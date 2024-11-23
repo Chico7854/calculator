@@ -26,3 +26,29 @@ function operate(a, b, operation) {
             return divide(a, b);
     }
 }
+
+function defineWidthOfDoubleButtons() {
+    let buttonWidth = parseInt(getComputedStyle(numberButton).width);
+    let gap = parseInt(getComputedStyle(buttonsContainer).gap);
+
+    let size = buttonWidth * 2 + gap;
+
+    doubleButtons.forEach(button => button.style.width = `${size}px`);
+}
+
+function defineWidthOfCalculator() {
+    let buttonWidth = parseInt(getComputedStyle(numberButton).width);
+    let gap = parseInt(getComputedStyle(buttonsContainer).gap);
+
+    let size = buttonWidth * 4 + gap * 3;
+
+    buttonsContainer.style.width = `${size}px`;
+}
+
+
+const doubleButtons = Array.from(document.querySelectorAll(".doubleButton"));
+const numberButton = document.querySelector(".numberButton");
+const buttonsContainer = document.querySelector("#buttons");
+
+defineWidthOfDoubleButtons();
+defineWidthOfCalculator();

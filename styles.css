@@ -1,6 +1,8 @@
 *, *::after, *::before {
     margin: 0;
     box-sizing: border-box;
+    font-family: monospace;
+    font-size: 30px;
 }
 
 body {
@@ -14,19 +16,43 @@ body {
 #calculator {
     background-color: #F7F7F7;
     padding: 10px;
+    border: 3px solid black;
+    border-radius: 1%;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 #display {
-
-    flex: 1;
+    background-color: lightslategray;
+    height: 90px;
+    border: 3px solid black;
 }
 
 #buttons {
-    flex: 6;
-
-    padding: 10px;
     display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
 }
+
+#buttons button {
+    height: 90px;
+    width: 110px;
+    border-radius: 5%;
+    padding: 0;
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+.numberButton {
+    background-color: rgb(48, 178, 31);
+}
+
+.optionButton {
+    background-color: rgb(91, 91, 234);
+}
+
+.operatorButton {
+    background-color: rgb(255, 119, 0);
+}
+
