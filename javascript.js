@@ -1,6 +1,6 @@
 //basic math functions
 function add(a, b) {
-    return a + b;
+    return Number(a) + Number(b);
 }
 
 function subtract(a, b) {
@@ -55,15 +55,30 @@ defineWidthOfDoubleButtons();
 defineWidthOfCalculator();
 
 function displayNumber(button) {
+    if (isNewNumber) {
+        isNewNumber = false;
+        selectingOperator = false;
+        display.textContent = "";
+    }
     display.textContent = display.textContent + button.textContent;
 }
 
-function doOperation() {
-
+function doOperation(button) {
+    if (operator === null || selectingOperator === true) {
+        operator = button.textContent;
+        firstNumber = display.textContent;
+        isNewNumber = true;
+        selectingOperator = true;
+        return;
+    }
+    firstNumber = operate(firstNumber, display.textContent, operator);
+    display.textContent = firstNumber;
 }
 
 function clearDisplay() {
     display.textContent = "";
+    firstNumber = null;
+    operator = null;
 }
 
 function getFirstClass(classes) {
@@ -93,7 +108,10 @@ function updateDisplay(button) {
 }
 
 const display = document.querySelector("#display p");
-let firtsNumber;
+let firstNumber = null;
+let operator = null;
+let isNewNumber = false;
+let selectingOperator = false;
 
 buttonsContainer.addEventListener("click", event => {
     let target = event.target;
