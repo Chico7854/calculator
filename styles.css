@@ -42,17 +42,30 @@ body {
     padding: 0;
     cursor: pointer;
     border: 2px solid black;
+    transition: background-color 0.2s ease;
 }
 
 .numberButton {
     background-color: rgb(48, 178, 31);
 }
 
+.numberButton:active {
+    background-color: rgb(43, 152, 29);
+}
+
 .optionButton {
     background-color: rgb(91, 91, 234);
 }
 
+.optionButton:active {
+    background-color: rgb(78, 78, 200);
+}
+
 .operatorButton {
     background-color: rgb(255, 119, 0);
+}
+
+.operatorButton:active {
+    background-color: rgb(167, 79, 2);
 }
 
