@@ -159,3 +159,4 @@ buttonsContainer.addEventListener("click", event => {
 });
 
 //TODO: Add keyboard Support
+//TODO: Add backspace button
