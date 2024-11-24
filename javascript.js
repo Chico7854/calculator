@@ -64,6 +64,14 @@ function displayNumber(digitedNumber) {
 
     if (isFloat && digitedNumber === ".") return;
 
+    const numberLength = digitedNumber.toString().length;
+
+    if (numberLength > MAX_CHARACTERS_DISPLAY) {
+        //TODO: Add support to big numbers with "e" notation
+        clearDisplay();
+        display.textContent = "BIG NUMBER";
+    }
+
     if (display.textContent.length < MAX_CHARACTERS_DISPLAY) {
         display.textContent += digitedNumber;
         if (digitedNumber === ".") isFloat = true;
@@ -95,6 +103,7 @@ function clearDisplay() {
     firstNumber = 0;
     operator = null;
     isNewNumber = true;
+    isFloat = false
 }
 
 function getFirstClass(classes) {
@@ -148,3 +157,5 @@ buttonsContainer.addEventListener("click", event => {
     if (target.tagName === "DIV") stopImediatePropagation();
     updateDisplay(target);
 });
+
+//TODO: Add keyboard Support
