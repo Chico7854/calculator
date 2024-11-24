@@ -61,7 +61,10 @@ function displayNumber(digitedNumber) {
         isNewNumber = false;
         display.textContent = "";
     }
-    display.textContent = display.textContent + digitedNumber;
+
+    if (display.textContent.length < MAX_CHARACTERS_DISPLAY) {
+        display.textContent += digitedNumber;
+    }
 }
 
 function doOperation(button) {
@@ -75,8 +78,11 @@ function doOperation(button) {
     firstNumber = operate(firstNumber, display.textContent, operator);
 
     button.textContent === "=" ? operator = null : operator = button.textContent;
+
+    let roundedFirstNumber = roundNumberToFitDisplay(firstNumber);
+
     isNewNumber = true;
-    displayNumber(firstNumber);
+    displayNumber(roundedFirstNumber);
     isNewNumber = true;
 }
 
@@ -117,10 +123,20 @@ function toggleSelectedButton (button) {
     button.classList.toggle("selectedButton");
 }
 
+function roundNumberToFitDisplay(number) {
+    if (Number.isInteger(number)) return number;
+
+    const integralNumber = Math.trunc(Math.abs(number));
+    const integralLength = (integralNumber.toString().length) + 1;      //"+1" because of the "."
+    const roundedNumber = parseFloat(number.toFixed(MAX_CHARACTERS_DISPLAY - integralLength));
+    return roundedNumber;
+}
+
 const display = document.querySelector("#display p");
 let firstNumber = 0;
 let operator = null;
 let isNewNumber = true;
+const MAX_CHARACTERS_DISPLAY = 10;
 
 buttonsContainer.addEventListener("click", event => {
     let target = event.target;
