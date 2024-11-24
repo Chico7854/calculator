@@ -62,8 +62,11 @@ function displayNumber(digitedNumber) {
         display.textContent = "";
     }
 
+    if (isFloat && digitedNumber === ".") return;
+
     if (display.textContent.length < MAX_CHARACTERS_DISPLAY) {
         display.textContent += digitedNumber;
+        if (digitedNumber === ".") isFloat = true;
     }
 }
 
@@ -82,6 +85,7 @@ function doOperation(button) {
     let roundedFirstNumber = roundNumberToFitDisplay(firstNumber);
 
     isNewNumber = true;
+    isFloat = false;
     displayNumber(roundedFirstNumber);
     isNewNumber = true;
 }
@@ -136,6 +140,7 @@ const display = document.querySelector("#display p");
 let firstNumber = 0;
 let operator = null;
 let isNewNumber = true;
+let isFloat = false;
 const MAX_CHARACTERS_DISPLAY = 9;       //it is actually 10, but you need space for the "-" in negative numbers
 
 buttonsContainer.addEventListener("click", event => {
