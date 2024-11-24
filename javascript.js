@@ -141,6 +141,9 @@ function roundNumberToFitDisplay(number) {
 
     const integralNumber = Math.trunc(Math.abs(number));
     const integralLength = (integralNumber.toString().length) + 1;      //"+1" because of the "."
+
+    if (integralLength > 9) return integralNumber;
+
     const roundedNumber = parseFloat(number.toFixed(MAX_CHARACTERS_DISPLAY - integralLength));
     return roundedNumber;
 }
