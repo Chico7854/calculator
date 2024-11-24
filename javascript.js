@@ -56,17 +56,17 @@ const buttonsContainer = document.querySelector("#buttons");
 defineWidthOfDoubleButtons();
 defineWidthOfCalculator();
 
-function displayNumber(button) {
+function displayNumber(digitedNumber) {
     if (isNewNumber) {
         isNewNumber = false;
         display.textContent = "";
     }
-    display.textContent = display.textContent + button.textContent;
+    display.textContent = display.textContent + digitedNumber;
 }
 
 function doOperation(button) {
     if (operator === null || isNewNumber === true) {
-        operator = button.textContent;
+        if (button.textContent !== "=") operator = button.textContent;
         firstNumber = display.textContent;
         isNewNumber = true;
         return;
@@ -76,14 +76,15 @@ function doOperation(button) {
 
     button.textContent === "=" ? operator = null : operator = button.textContent;
     isNewNumber = true;
-    display.textContent = firstNumber;
+    displayNumber(firstNumber);
+    isNewNumber = true;
 }
 
 function clearDisplay() {
     display.textContent = "";
-    operator.classList.toggle("selectedButton");
-    firstNumber = null;
+    firstNumber = 0;
     operator = null;
+    isNewNumber = true;
 }
 
 function getFirstClass(classes) {
@@ -109,7 +110,7 @@ function updateDisplay(button) {
         return;
     }
 
-    buttonClass === "numberButton" ? displayNumber(button) : doOperation(button);
+    buttonClass === "numberButton" ? displayNumber(button.textContent) : doOperation(button);
 }
 
 function toggleSelectedButton (button) {
@@ -117,9 +118,9 @@ function toggleSelectedButton (button) {
 }
 
 const display = document.querySelector("#display p");
-let firstNumber = null;
+let firstNumber = 0;
 let operator = null;
-let isNewNumber = false;
+let isNewNumber = true;
 
 buttonsContainer.addEventListener("click", event => {
     let target = event.target;

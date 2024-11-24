@@ -33,6 +33,7 @@ body {
     background-color: lightslategray;
     height: 90px;
     border: 4px solid black;
+    max-width: 455px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
