@@ -136,7 +136,7 @@ const display = document.querySelector("#display p");
 let firstNumber = 0;
 let operator = null;
 let isNewNumber = true;
-const MAX_CHARACTERS_DISPLAY = 10;
+const MAX_CHARACTERS_DISPLAY = 9;       //it is actually 10, but you need space for the "-" in negative numbers
 
 buttonsContainer.addEventListener("click", event => {
     let target = event.target;
