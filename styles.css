@@ -1,3 +1,9 @@
+:root {
+    --green-button: rgb(48, 178, 31);
+    --blue-button: rgb(91, 91, 234);
+    --orange-button: rgb(255, 119, 0);
+}
+
 *, *::after, *::before {
     margin: 0;
     box-sizing: border-box;
@@ -49,30 +55,21 @@ body {
     padding: 0;
     cursor: pointer;
     border: 3px solid black;
-    transition: background-color 0.2s ease;
+    transition: filter 0.2s ease;
 }
 
 .numberButton {
-    background-color: rgb(48, 178, 31);
-}
-
-.numberButton:active {
-    background-color: rgb(43, 152, 29);
+    background-color: var(--green-button);
 }
 
 .optionButton {
-    background-color: rgb(91, 91, 234);
-}
-
-.optionButton:active {
-    background-color: rgb(78, 78, 200);
+    background-color: var(--blue-button);
 }
 
 .operatorButton {
-    background-color: rgb(255, 119, 0);
+    background-color: var(--orange-button);
 }
 
-.operatorButton:active {
-    background-color: rgb(167, 79, 2);
+.numberButton:active, .optionButton:active, .operatorButton:active {
+    filter: brightness(0.8);
 }
-

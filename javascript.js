@@ -12,16 +12,18 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return b === 0 ? "dumbass" : a / b;
+    return b == 0 ? "dumbass" : a / b;
 }
 
 function operate(a, b, operation) {
+    if (a === "dumbass") return a;
+
     switch (operation) {
         case "+":
             return add(a, b);
         case "-":
             return subtract(a, b);
-        case "*":
+        case "X":
             return multiply(a, b);
         case "/":
             return divide(a, b);
@@ -57,26 +59,29 @@ defineWidthOfCalculator();
 function displayNumber(button) {
     if (isNewNumber) {
         isNewNumber = false;
-        selectingOperator = false;
         display.textContent = "";
     }
     display.textContent = display.textContent + button.textContent;
 }
 
 function doOperation(button) {
-    if (operator === null || selectingOperator === true) {
+    if (operator === null || isNewNumber === true) {
         operator = button.textContent;
         firstNumber = display.textContent;
         isNewNumber = true;
-        selectingOperator = true;
         return;
     }
+
     firstNumber = operate(firstNumber, display.textContent, operator);
+
+    button.textContent === "=" ? operator = null : operator = button.textContent;
+    isNewNumber = true;
     display.textContent = firstNumber;
 }
 
 function clearDisplay() {
     display.textContent = "";
+    operator.classList.toggle("selectedButton");
     firstNumber = null;
     operator = null;
 }
@@ -104,19 +109,20 @@ function updateDisplay(button) {
         return;
     }
 
-    buttonClass === "numberButton" ? displayNumber(button) : doOperation(button)
+    buttonClass === "numberButton" ? displayNumber(button) : doOperation(button);
+}
+
+function toggleSelectedButton (button) {
+    button.classList.toggle("selectedButton");
 }
 
 const display = document.querySelector("#display p");
 let firstNumber = null;
 let operator = null;
 let isNewNumber = false;
-let selectingOperator = false;
 
 buttonsContainer.addEventListener("click", event => {
     let target = event.target;
     if (target.tagName === "DIV") stopImediatePropagation();
     updateDisplay(target);
-})
-
-
+});
